@@ -103,12 +103,30 @@ public class Deque<Item> implements Iterable<Item> {
 
     // return an iterator over items in order from front to end
     public Iterator<Item> iterator() {
-
+        return new DequeIterator();
     }
 
     // unit testing
     public static void main(String[] args) {
+//        Deque<Integer> asd = new Deque<>();
+//        for(int i = 0; i < 10; i++) {
+//            asd.addLast(i * 2);
+//        }
+//        asd.print();
+//        for(int i = 0; i < 10; i++) {
+//            System.out.print(asd.removeLast() + " ");
+//        }
+//        asd.addFirst(2);
+//        System.out.println();
 
+    }
+
+    private void print() {
+        Iterator<Item> it = this.iterator();
+        while(it.hasNext()) {
+            System.out.print(it.next() + " ");
+        }
+        System.out.println();
     }
 
     private void checkNotNullOnAdd(Item item) {
@@ -133,5 +151,22 @@ public class Deque<Item> implements Iterable<Item> {
         first = null;
         last = null;
         return result;
+    }
+
+    private class DequeIterator implements Iterator<Item> {
+        Node current = first;
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public Item next() {
+            if(current == null) throw new NoSuchElementException();
+            Item result = current.value;
+            current = current.next;
+            return result;
+        }
     }
 }
