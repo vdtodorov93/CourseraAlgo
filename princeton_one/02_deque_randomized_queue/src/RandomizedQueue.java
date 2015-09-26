@@ -1,5 +1,6 @@
 import edu.princeton.cs.algs4.StdRandom;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -78,27 +79,32 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
 
     private class RandomizedQueueIterator implements Iterator<Item> {
+        Item[] copy = Arrays.copyOf(values, values.length);
+        int copySize = size();
 
         @Override
         public boolean hasNext() {
-            return size() > 0;
+            return copySize > 0;
         }
 
         @Override
         public Item next() {
-            return dequeue();
+            if(copySize == 0) {
+                throw new NoSuchElementException();
+            }
+            return copy[--copySize];
         }
     }
 
     // unit testing
     public static void main(String[] args) {
-//        RandomizedQueue<Integer> rq = new RandomizedQueue<>();
-//        for(int i = 0; i < 19; i++) rq.enqueue(i);
-//
-//        Iterator<Integer> it = rq.iterator();
-//        while(it.hasNext()) {
-//            System.out.print(it.next() + " ");
-//        }
+        RandomizedQueue<Integer> rq = new RandomizedQueue<>();
+        for(int i = 0; i < 19; i++) rq.enqueue(i);
+
+        Iterator<Integer> it = rq.iterator();
+        while(it.hasNext()) {
+            System.out.print(it.next() + " ");
+        }
 
         //Object[] as = rq.values;
 //        for(int i = 0; i < as.length; i++) System.out.print(as[i] + " ");
