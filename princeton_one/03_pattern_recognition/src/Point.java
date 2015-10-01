@@ -64,7 +64,7 @@ public class Point implements Comparable<Point> {
 
     public static void main(String[] args) {
         Point[] points = { new Point(1, 1), new Point(2, 2), new Point(3, 3), new Point(0, 0), new Point(3, 6), new Point(6, 9), };
-        BruteCollinearPoints pts = new BruteCollinearPoints(points);
+        FastCollinearPoints pts = new FastCollinearPoints(points);
         System.out.println(pts.numberOfSegments());
     }
 }
