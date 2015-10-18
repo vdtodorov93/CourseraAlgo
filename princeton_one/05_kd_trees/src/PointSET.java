@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 
-/**
- * Created by vasil on 10/17/15.
- */
 public class PointSET {
     private TreeSet<Point2D> points;
 
@@ -48,7 +45,7 @@ public class PointSET {
     public Iterable<Point2D> range(RectHV rect) {
         List<Point2D> inRange = new ArrayList<>();
         for (Point2D point2D : points) {
-            if(rect.contains(point2D)) {
+            if (rect.contains(point2D)) {
                 inRange.add(point2D);
             }
         }
@@ -58,7 +55,7 @@ public class PointSET {
 
     // a nearest neighbor in the set to point p; null if the set is empty
     public Point2D nearest(Point2D p) {
-        if(p == null) {
+        if (p == null) {
             throw new NullPointerException();
         }
 
@@ -67,7 +64,7 @@ public class PointSET {
 
         for(Point2D point2D: points) {
             double dist = point2D.distanceTo(p);
-            if(dist < minDist) {
+            if (dist < minDist) {
                 minDist = dist;
                 nearest = point2D;
             }
